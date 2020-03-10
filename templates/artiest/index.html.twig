@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artiest{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">Younes Aoquab</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/default">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="/artiest">Artiesten</a>
+                <a class="nav-item nav-link" href="/optreden">Optredens</a>
+                <a class="nav-item nav-link" href="/contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <h2>Artiest</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naam</th>
+                <th>Genre</th>
+                <th>Prijs</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for artiest in artiests %}
+            <tr>
+                <td>{{ artiest.id }}</td>
+                <td>{{ artiest.Naam }}</td>
+                <td>{{ artiest.Genre }}</td>
+                <td>{{ artiest.Prijs }}</td>
+                <td>
+                    <a href="{{ path('artiest_show', {'id': artiest.id}) }}">show</a>
+                    <a href="{{ path('artiest_edit', {'id': artiest.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('artiest_new') }}">Create new</a>
+{% endblock %}
